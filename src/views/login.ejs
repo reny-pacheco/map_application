@@ -31,22 +31,22 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="/">Find Me</a>
+            <a class="navbar-brand" href="#">Find Me</a>
         </nav>
     </header>
 <body>
   <div class="container col-sm-12 col-md-6 mt-4">
     <h4 class="text-center mt-4 pt-4 font-weight-bold">Login Here</h4>
-    <form class="mt-4">
+    <form class="mt-4" method="POST" action="/login">
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <input type="email" name="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Password">
+        <input name="password" type="password" class="form-control form-control-sm" id="exampleInputPassword1" placeholder="Password">
       </div>
-      <a href="/" type="submit" class="btn btn-primary btn-block btn-sm">Submit</a>
+      <button href="/" type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
     </form>
   </div>
   <div class="text-center mt-3 create">Don't have account, Sign up <a href="/signup">here.</a></div>
