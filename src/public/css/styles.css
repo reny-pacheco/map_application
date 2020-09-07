@@ -20,3 +20,12 @@ footer{
 .create{
     font-size: .8rem !important;
 }
+.logout{
+    font-size: .9rem;
+    background-color:rgb(39, 161, 153) !important;
+    border: none;
+    font-weight: bold;
+}
+.navbar-brand{
+    font-weight: bold;
+}

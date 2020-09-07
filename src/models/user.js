@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 const bcrpyt = require('bcryptjs')
+const jwt = require("jsonwebtoken")
+const dotenv = require('dotenv')
+dotenv.config();
 
 const userSchema = new mongoose.Schema({
     firstname: {
@@ -64,6 +67,19 @@ userSchema.statics.findByCredentials = async (email, password) => {
     return user
 }
 
+userSchema.statics.login = async function (email, password) {
+    const user = await this.findOne({ email })
+
+    if (user) {
+        const auth = await bcrpyt.compare(password, user.password)
+        if (auth) {
+            return user
+        }
+        throw new  Error('Unable to login')
+    }
+    throw new  Error('Unable to login')
+}
+
 // hashing password before saving to the database
 userSchema.pre('save', async function (next) {
     const salt = await bcrpyt.genSalt()
@@ -78,6 +94,12 @@ userSchema.methods.getProfile = function() {
     delete userObject.email
 
     return userObject
+}
+
+//creating token for every user
+userSchema.methods.createToken = async function() {
+    const token = jwt.sign({_id : this._id.toString()}, process.env.JWT_SECRET)
+    return token
 }
 
 const User = mongoose.model('User', userSchema)

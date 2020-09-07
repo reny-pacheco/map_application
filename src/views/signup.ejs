@@ -36,9 +36,9 @@
     </header>
 
   <body>
-    <div class="container col-sm-4 mt-4">
-        <h4 class="text-center mt-4 pt-4 font-weight-bold">Sign up here</h4>
-        <form class="mt-4" method="POST" action="/signup">
+    <div class="container col-sm-12 col-md-6 mt-4">
+      <h4 class="text-center mt-4 mb-4 pt-4 font-weight-bold">Sign up Here</h4>
+      <form class="mt-4 pt-4 col-sm-8 m-auto" method="POST" action="/signup">
           <div class="form-group">
             <input name="firstname" type="text" class="form-control form-control-sm" id="first_name" placeholder="Firstname">
           </div>
@@ -53,6 +53,7 @@
             </div>
             <button type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
         </form>
+        <div class="text-center mt-3 create">Already have an account, Log in <a href="/login">here.</a></div>
     </div>
 
 <%- include('partials/footer_womap'); -%>
