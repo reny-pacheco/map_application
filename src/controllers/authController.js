@@ -1,4 +1,7 @@
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
+dotenv.config();
 
 module.exports.login_get = (req,res) => {
     res.render('login')
@@ -11,9 +14,9 @@ module.exports.login_post = async (req,res) => {
     try {
         const user = await User.login(email, password)
         const token = await user.createToken()
-        res.cookie('jwt', token, { httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 })
+        res.cookie('jwt', token, {httpOnly: true, maxAge: 3 * 24 * 60 * 60 * 1000 })
 
-        res.status(200).render('home', {user : user})
+        res.status(200).redirect('/')
     } catch (err) {
         res.status(400).send('Email or password incorrect')
     }

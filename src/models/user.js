@@ -96,7 +96,7 @@ userSchema.methods.getProfile = function() {
     return userObject
 }
 
-//creating token for every user
+// creating token for every user
 userSchema.methods.createToken = async function() {
     const token = jwt.sign({_id : this._id.toString()}, process.env.JWT_SECRET)
     return token
