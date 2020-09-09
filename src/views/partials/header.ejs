@@ -31,9 +31,11 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-between">
-            <p class="navbar-brand m-0"> Hello <%= user.firstname %></p>
-
             <% if (user) { %>
+                <p class="navbar-brand m-0"> Hello <%= user.firstname %></p>
+            
+
+        
                 <a href="/logout" class="logout btn btn-sm btn-primary">Log out</a>
               <% } %>
         

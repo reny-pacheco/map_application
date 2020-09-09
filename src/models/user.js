@@ -8,30 +8,35 @@ dotenv.config();
 const userSchema = new mongoose.Schema({
     firstname: {
         type: String,
-        required: true,
+        required: [true, 'Firstname is required'],
+        maxlength: [30, 'Firstname should 30 characters only'],
         trim: true,
         validate(value) {
             if (!validator.isAlpha(value)) {
                 throw new Error('Username must contain letters only')
             }
-        }
+        },
         
     },
     lastname: {
         type: String,
-        required: true,
+        required: [true, 'Lastname is required'],
+        maxlength: [30, 'Lastname should 30 characters only'],
         trim: true,
         validate(value) {
             if (!validator.isAlpha(value)) {
                 throw new Error('Lastname must contain letters only')
+            }
+            if (value === undefined) {
+                throw new Error('Lastname is required')
             }
         }
         
     },
     password: {
         type: String,
-        required: true,
-        minlength: 7,
+        required: [true, 'Password is required'],
+        minlength: [8, 'Password should contain at least 8 characters'],
         validate(value){
             if (value.toLowerCase().includes('password')){
                 throw new Error('Password cannot contain "password"')
@@ -42,7 +47,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        require: true,
+        required: [true, 'Email is required'],
         trim: true,
         lowercase: true,
         validate(value){
