@@ -4,11 +4,11 @@ const dotenv = require('dotenv')
 dotenv.config();
 
 const handleErrors = (err) => {
-    console.log(err.message, err.code)
+    // console.log(err.message, err.code)
     let errors = { firstname: '' ,lastname: '', email: '', password: ''}
 
-    // duplicate email error
-    if (err.code === 11000) {
+     // duplicate email error
+     if (err.code === 11000) {
         errors.email = 'Email is already registered'
         return errors
     }
@@ -19,10 +19,12 @@ const handleErrors = (err) => {
            errors[properties.path] = properties.message
        })
     }
+
     if (err.message.includes('Unable to login')) {
         errors = 'Email or password is incorrect'
-    
+        return errors
     }
+
     return errors
 }
 
