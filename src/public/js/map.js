@@ -15,11 +15,14 @@ map.locate({setView: true, maxZoom: 16});
 
 function onLocationFound(e) {
     var radius = e.accuracy;
+    let user = document.querySelector('.navbar-brand')
+    let username = user.innerText.replace('Hello', '').bold().fontcolor('blue')
 
     L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+        .bindPopup(`You are here ${username}, ${radius} meters from this point`).openPopup();
 
     L.circle(e.latlng, radius).addTo(map);
+    // L.marker([14.011361, 120.989685]).addTo(map).bindPopup("Taal lake").openPopup();
 }
 
 map.on('locationfound', onLocationFound);
@@ -27,5 +30,11 @@ map.on('locationfound', onLocationFound);
 function onLocationError(e) {
     alert(e.message);
 }
+// alert lat and long when map is clicked
+// map.on('click', function(e) {
+//     alert( e.latlng)
+// });
 
 map.on('locationerror', onLocationError);
+
+
